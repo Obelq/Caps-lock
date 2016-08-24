@@ -15,9 +15,17 @@ namespace WebsiteForAds.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            return View(db.Posts.ToList());
+            if (searchBy == "Body")
+            {
+                return View(db.Posts.Where(x => x.Body.Contains(search)||search==null).ToList());
+            }
+            else
+            {
+                return View(db.Posts.Where(x => x.Title.Contains(search) || search == null).ToList());
+            }
+            
         }
 
         // GET: Posts/Details/5
