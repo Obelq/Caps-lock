@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using MVCBlog.Models;
+using WebsiteForAds.Models;
 
-namespace MVCBlog.Controllers
+namespace WebsiteForAds.Controllers
 {
     public class HomeController : Controller
     {

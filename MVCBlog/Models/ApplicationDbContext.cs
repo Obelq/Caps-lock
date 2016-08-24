@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace MVCBlog.Models
+namespace WebsiteForAds.Models
 {
     
 
@@ -20,6 +20,6 @@ namespace MVCBlog.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<MVCBlog.Models.Post> Posts { get; set; }
+        public System.Data.Entity.DbSet<WebsiteForAds.Models.Post> Posts { get; set; }
     }
 }

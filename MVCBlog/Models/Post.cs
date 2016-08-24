@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MVCBlog.Models
+namespace WebsiteForAds.Models
 {
     public class Post
     {

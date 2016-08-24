@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using MVCBlog.Models;
+using WebsiteForAds.Models;
 
-namespace MVCBlog.Controllers
+namespace WebsiteForAds.Controllers
 {
     [Authorize]
     public class ManageController : Controller

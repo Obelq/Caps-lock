@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVCBlog.Models;
+using WebsiteForAds.Models;
 
-namespace MVCBlog.Controllers
+namespace WebsiteForAds.Controllers
 {
     public class PostsController : Controller
     {

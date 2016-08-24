@@ -1,4 +1,4 @@
-namespace MVCBlog.Migrations
+namespace WebsiteForAds.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;

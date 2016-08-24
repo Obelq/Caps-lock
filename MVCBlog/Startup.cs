@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(MVCBlog.Startup))]
-namespace MVCBlog
+[assembly: OwinStartupAttribute(typeof(WebsiteForAds.Startup))]
+namespace WebsiteForAds
 {
     public partial class Startup
     {
