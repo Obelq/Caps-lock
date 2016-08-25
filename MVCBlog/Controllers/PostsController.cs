@@ -19,13 +19,13 @@ namespace WebsiteForAds.Controllers
         {
             if (searchBy == "Body")
             {
-                return View(db.Posts.Where(x => x.Body.Contains(search)||search==null).ToList());
+                return View(db.Posts.Where(x => x.Body.Contains(search) || search == null).ToList());
             }
             else
             {
                 return View(db.Posts.Where(x => x.Title.Contains(search) || search == null).ToList());
             }
-            
+
         }
 
         // GET: Posts/Details/5
@@ -54,7 +54,7 @@ namespace WebsiteForAds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Image")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace WebsiteForAds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Post post)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,Image")] Post post)
         {
             if (ModelState.IsValid)
             {
