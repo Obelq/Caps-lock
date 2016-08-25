@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
+<link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
 
 <h2>Детайли</h2>
 
@@ -22,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            <textarea rows="20" class="form-control text-box multi-line valid" disabled="disabled" style="background-color:white; color:black;">@Model.Body</textarea>
         </dd>
 
         <dt>

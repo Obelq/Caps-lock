@@ -244,3 +244,7 @@ C:\Users\Zahariya\Desktop\New folder (5)\trunk\MVCBlog\bin\Microsoft.Owin.Securi
 C:\Users\Zahariya\Desktop\New folder (5)\trunk\MVCBlog\obj\Debug\WebsiteForAds.csprojResolveAssemblyReference.cache
 C:\Users\Zahariya\Desktop\New folder (5)\trunk\MVCBlog\obj\Debug\MVCBlog.dll
 C:\Users\Zahariya\Desktop\New folder (5)\trunk\MVCBlog\obj\Debug\MVCBlog.pdb
+C:\Users\Zahariya\Desktop\New folder (4)\trunk\MVCBlog\bin\PagedList.dll
+C:\Users\Zahariya\Desktop\New folder (4)\trunk\MVCBlog\bin\PagedList.Mvc.dll
+C:\Users\Zahariya\Desktop\New folder (4)\trunk\MVCBlog\bin\PagedList.xml
+C:\Users\Zahariya\Desktop\New folder (4)\trunk\MVCBlog\bin\PagedList.Mvc.xml

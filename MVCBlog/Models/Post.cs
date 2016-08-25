@@ -16,6 +16,7 @@ namespace WebsiteForAds.Models
         public string Title { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
         [Required]
@@ -23,7 +24,7 @@ namespace WebsiteForAds.Models
 
         public ApplicationUser Author { get; set; }
 
-        [Required]
+        //[Required]
         public byte[] Picture { get; set; }
     }
 }
