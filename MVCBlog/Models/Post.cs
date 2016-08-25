@@ -22,5 +22,8 @@ namespace WebsiteForAds.Models
         public DateTime Date { get; set; }
 
         public ApplicationUser Author { get; set; }
+
+        [Required]
+        public byte[] Picture { get; set; }
     }
 }
