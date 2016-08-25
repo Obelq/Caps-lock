@@ -1,11 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home";
 }
+<link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
 @model List<WebsiteForAds.Models.Post>
+    <h1 class="homePageTitle">Скоро добавени обяви</h1>
 @foreach (var post in Model)
 {
     <section class="row">
-        <article class="post col-md-6">
+        <article class="advertismentHomePage">
             <h2 class="title">@post.Title</h2>
             <div class="about">
                 Публикувано на <i>@post.Date</i>

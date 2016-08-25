@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
 <div style="font-family:Arial">
     <h2>Обяви</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Създай нова обява", "Create")
     </p>
     <br />
     <p>
@@ -14,30 +15,29 @@
         {
             <b>Търси по:</b> @Html.RadioButton("searchBy", "Title", true) <text>Заглавие</text>
             @Html.RadioButton("searchBy", "Body") <text>Описание</text> <br />
-            @Html.TextBox("search") <input type="submit" value="Търсене" />
+            @Html.TextBox("search") <input type="submit" class="searchButton" value="Търсене" />
         }
-
     </p>
     <table class="table" border="1">
         <tr>
-            <th>
+            <th class="colName">
                 @Html.DisplayNameFor(model => model.Picture)
             </th>
-            <th>
+            <th class="colName">
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
+            <th class="colName">
                 @Html.DisplayNameFor(model => model.Body)
             </th>
-            <th>
+            <th class="colName">
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th>Action</th>
+            <th class="colName">Action</th>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td >
                     @Html.DisplayFor(modelItem => item.Picture)
                 </td>
                 <td>
