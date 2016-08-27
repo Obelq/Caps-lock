@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebsiteForAds.Models;
+using WebsiteForAds.Extensions;
 
 namespace WebsiteForAds.Controllers
 {
@@ -79,6 +80,7 @@ namespace WebsiteForAds.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    this.AddNotification("Добре дошли!", NotificationType.SUCCESS);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -86,7 +88,7 @@ namespace WebsiteForAds.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    this.AddNotification("Данните, които сте въвели, са невалидни!", NotificationType.ERROR);
                     return View(model);
             }
         }
@@ -156,16 +158,16 @@ namespace WebsiteForAds.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    this.AddNotification("Успешна регистрация!", NotificationType.SUCCESS);
                     return RedirectToAction("Index", "Home");
                 }
-                AddErrors(result);
+                this.AddNotification("Неуспешна регистрация!", NotificationType.ERROR); AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -257,8 +259,10 @@ namespace WebsiteForAds.Controllers
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
+                this.AddNotification("Успешно сменена парола!", NotificationType.SUCCESS);
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+            this.AddNotification("Неуспешно сменена парола!", NotificationType.ERROR);
             AddErrors(result);
             return View();
         }

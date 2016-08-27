@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebsiteForAds.Models.Post>
+﻿@using WebsiteForAds.Classes;
+@model IEnumerable<WebsiteForAds.Models.Post>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -21,18 +23,18 @@
     <table class="table" border="1">
         <tr>
             <th class="colName">
-                Снимка
+                Снимка:
             </th>
             <th class="colName">
-                Заглавие
+                Заглавие:
             </th>
             <th class="colName">
-                Описание
+                Описание:
             </th>
             <th class="colName">
-                Дата
+                Дата:
             </th>
-            <th class="colName">Действия</th>
+            <th class="colName">Действия:</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -41,16 +43,15 @@
                     @Html.DisplayFor(modelItem => item.Picture)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.ActionLink(item.Title, "Details", new { id = item.Id })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Body)
+                    @Cut.CutText(item.Body)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                    @Html.ActionLink("Детайли", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Редактиране", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Изтрий", "Delete", new { id = item.Id })
                 </td>

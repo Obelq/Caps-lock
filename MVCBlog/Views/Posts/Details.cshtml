@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+           Заглавие:
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Body)
+           Съдържание:
         </dt>
 
         <dd>
@@ -27,13 +27,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            Дата:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Date)
         </dd>
 
+        <dt>
+            Снмика:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
     </dl>
 </div>
 <p>

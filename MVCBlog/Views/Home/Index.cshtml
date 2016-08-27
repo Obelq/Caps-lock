@@ -8,7 +8,7 @@
 {
     <section class="row">
         <article class="advertismentHomePage">
-            <h2 class="title">@post.Title</h2>
+            <h2 class="title">@Html.ActionLink(post.Title, "Details", new { id = post.Id })</h2>
             <div class="about">
                 Публикувано на <i>@post.Date</i>
                 @if (post.Author != null)

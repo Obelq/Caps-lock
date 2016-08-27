@@ -20,6 +20,8 @@ namespace WebsiteForAds.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<WebsiteForAds.Models.Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

@@ -1,12 +1,18 @@
-﻿using System.Data;
+﻿using WebsiteForAds.Models;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using WebsiteForAds.Models;
+using WebsiteForAds.Extensions;
+using Microsoft.AspNet.Identity;
+using System;
+using WebsiteForAds.Models;
 
 namespace WebsiteForAds.Controllers
 {
+    [Authorize]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -56,11 +62,24 @@ namespace WebsiteForAds.Controllers
             {
                 db.Posts.Add(post);
                 db.SaveChanges();
+                this.AddNotification("Публикацията беше създадена успешно!",NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
             return View(post);
         }
+
+        //public ActionResult CreateComment([Bind(Include = "Id,Body,Date,Author")] Comment comment)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Comments.Add(comment);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //
+        //    return View(comment);
+        //}
 
         // GET: Posts/Edit/5
         public ActionResult Edit(int? id)
@@ -88,12 +107,14 @@ namespace WebsiteForAds.Controllers
             {
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
+                this.AddNotification("Публикацията беше редактирана успешно!", NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
             return View(post);
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Roles = "Administrators")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,6 +130,7 @@ namespace WebsiteForAds.Controllers
         }
 
         // POST: Posts/Delete/5
+        [Authorize(Roles = "Administrators")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -116,6 +138,7 @@ namespace WebsiteForAds.Controllers
             Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
             db.SaveChanges();
+            this.AddNotification("Публикацията беше изтрита успешно!", NotificationType.SUCCESS);
             return RedirectToAction("Index");
         }
 
@@ -126,6 +149,23 @@ namespace WebsiteForAds.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult MineAdvertisments()
+        {
+            string currentUserId = this.User.Identity.GetUserId();
+            var advertisments = this.db.Posts
+                .Where(e => e.AuthorId == currentUserId)
+                .OrderBy(e => e.Date)
+                .Select(PostViewModel.ViewModel);
+
+            var upcomingAdvertisments = advertisments.Where(e => e.StartDateTime > DateTime.Now);
+            var passedAdvertisments = advertisments.Where(e => e.StartDateTime <= DateTime.Now);
+            return View(new MyAdvertismentsModel()
+            {
+                UpcomingAdvertisments = upcomingAdvertisments,
+                PassedAdvertisments = passedAdvertisments
+            });
         }
     }
 }
