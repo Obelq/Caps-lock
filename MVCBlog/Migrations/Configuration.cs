@@ -59,6 +59,7 @@ namespace WebsiteForAds.Migrations
             {
                 throw new Exception(string.Join("; ", userCreateResult.Errors));
             }
+            context.Users.Add(user);
         }
 
         private void CreateRole(ApplicationDbContext context, string roleName)

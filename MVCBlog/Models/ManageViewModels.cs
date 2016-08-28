@@ -28,14 +28,14 @@ namespace WebsiteForAds.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 3)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Новата парола")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -47,14 +47,14 @@ namespace WebsiteForAds.Models
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 3)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Новата парола")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
     }
 

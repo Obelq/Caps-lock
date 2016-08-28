@@ -6,8 +6,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WebsiteForAds.Models
 {
-    
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

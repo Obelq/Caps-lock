@@ -58,7 +58,7 @@ namespace WebsiteForAds.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомни ме?")]
         public bool RememberMe { get; set; }
     }
 
@@ -70,14 +70,14 @@ namespace WebsiteForAds.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Паролата")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
     }
 

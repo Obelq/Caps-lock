@@ -24,7 +24,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Начало", "Index", "Home")</li>
                     <li>@Html.ActionLink("Обяви", "Index", "Posts")</li>
-                    <li>@Html.ActionLink("Добави обява", "Create", "Posts")</li>
+                    @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Добави обява", "Create", "Posts")</li>
+                    }
+
+                    @if (ViewContext.HttpContext.User.IsInRole("Administrators"))
+                    {
+                        <li>@Html.ActionLink("Потребители", "UsersIndex", "Account")</li>
+                    }
+                   
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

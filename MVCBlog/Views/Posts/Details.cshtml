@@ -4,44 +4,67 @@
     ViewBag.Title = "Details";
 }
 <link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
+<div class="details">
+    <h2>Детайли</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Заглавие:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt>
+                Съдържание:
+            </dt>
+            <dd>
+                <textarea rows="20" class="form-control text-box multi-line valid" disabled="disabled" style="background-color:white; color:black;">@Model.Body</textarea>
+            </dd>
+            <dt>
+                Добавена на:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt>
+                Снмика:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Picture)
+            </dd>
+        </dl>
+    </div>
+    <br />
+    <div>
+        <h2>Коментари</h2>
+        @if (Model.Comments.Any())
+        {
+            @Html.DisplayFor(x => x.Comments);
+        }
+        else
+        {
+            <span>Няма коментари за показване.</span>
+        }
+    </div>
+    <br />
+    <div>
+        <h2>Добавяне на коментар</h2>
 
-<h2>Детайли</h2>
+        @using (Ajax.BeginForm("AddComment", "Posts", new { id = Model.Id }, new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.InsertAfter,
+            UpdateTargetId = "comments",
+        }))
+        {
+            @Html.AntiForgeryToken()
+            <label for="Content">Съдържание:</label>
+            <input id="Content" type="text" name="Content" value="" />
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-           Заглавие:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-           Съдържание:
-        </dt>
-
-        <dd>
-            <textarea rows="20" class="form-control text-box multi-line valid" disabled="disabled" style="background-color:white; color:black;">@Model.Body</textarea>
-        </dd>
-
-        <dt>
-            Дата:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            Снмика:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Picture)
-        </dd>
-    </dl>
+            <input type="submit" name="submit" value="Добави" />
+        }
+    </div>
 </div>
 <p>
     @Html.ActionLink("Редактирай", "Edit", new { id = Model.Id }) |

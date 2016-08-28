@@ -4,11 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using WebsiteForAds.Models;
 using WebsiteForAds.Extensions;
 using Microsoft.AspNet.Identity;
-using System;
-using WebsiteForAds.Models;
+using WebsiteForAds.Web.InputModels;
 
 namespace WebsiteForAds.Controllers
 {
@@ -158,14 +156,30 @@ namespace WebsiteForAds.Controllers
                 .Where(e => e.AuthorId == currentUserId)
                 .OrderBy(e => e.Date)
                 .Select(PostViewModel.ViewModel);
-
-            var upcomingAdvertisments = advertisments.Where(e => e.StartDateTime > DateTime.Now);
-            var passedAdvertisments = advertisments.Where(e => e.StartDateTime <= DateTime.Now);
-            return View(new MyAdvertismentsModel()
+            
+            return View(advertisments);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddComment(CommentInputModel comment)
+        {
+            if (comment != null && this.ModelState.IsValid)
             {
-                UpcomingAdvertisments = upcomingAdvertisments,
-                PassedAdvertisments = passedAdvertisments
-            });
+                comment.UserId = this.User.Identity.GetUserId();
+                var comment = Mapper.Map<Comment>(model);
+                this.Data.Comments.Add(comment);
+                this.Data.SaveChanges();
+
+                var commentViewModel = this.Data.Comments
+                    .All()
+                    .Where(x => x.Id == comment.Id)
+                    .Project()
+                    .To<CommentViewModel>()
+                    .FirstOrDefault();
+                return this.PartialView("DisplayTemplates/CommentViewModel", commentViewModel);
+            }
+
+            return this.Json(this.ModelState);
         }
     }
 }

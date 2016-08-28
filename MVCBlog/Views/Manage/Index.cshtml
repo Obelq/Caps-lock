@@ -8,10 +8,10 @@
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <hr />
-    <dl class="dl-horizontal">
+       <dl class="dl-horizontal">
+
         <dt>Парола:</dt>
         <dd>
-            [
             @if (Model.HasPassword)
             {
                 @Html.ActionLink("Смяна на паролата", "ChangePassword")
