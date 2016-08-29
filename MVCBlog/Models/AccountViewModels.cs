@@ -49,13 +49,13 @@ namespace WebsiteForAds.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Имейл:")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
         [Display(Name = "Запомни ме?")]
@@ -66,17 +66,17 @@ namespace WebsiteForAds.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Имейл:")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [DataType(DataType.Password)]
-        [Display(Name = "Паролата")]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Потвърди паролата:")]
         [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
     }
@@ -85,18 +85,18 @@ namespace WebsiteForAds.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Имейл:")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Потъврди паролата:")]
+        [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

@@ -363,3 +363,4 @@ C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\LinkedIn.Api.Client.O
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Ninject.dll
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Owin.Security.Providers.dll
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Ninject.xml
+C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\obj\Debug\WebsiteForAds.csprojResolveAssemblyReference.cache

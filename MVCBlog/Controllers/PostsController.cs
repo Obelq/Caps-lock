@@ -19,11 +19,11 @@ namespace WebsiteForAds.Controllers
         {
             if (searchBy == "Body")
             {
-                return View(db.Posts.Where(x => x.Body.Contains(search) || search == null).ToList());
+                return View(db.Posts.OrderByDescending(x => x.Date).Where(x => x.Body.Contains(search) || search == null).ToList());
             }
             else
             {
-                return View(db.Posts.Where(x => x.Title.Contains(search) || search == null).ToList());
+                return View(db.Posts.OrderByDescending(x => x.Date).Where(x => x.Title.Contains(search) || search == null).ToList());
             }
         }
 
@@ -53,7 +53,7 @@ namespace WebsiteForAds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Image")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Image,Author")] Post post)
         {
             if (ModelState.IsValid)
             {

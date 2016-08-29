@@ -175,6 +175,7 @@ input {
 button,
 select {
   text-transform: none;
+  background-color:white;
 }
 
 button,
@@ -221,7 +222,7 @@ textarea {
 
 table {
   border-collapse: collapse;
-  border-spacing: 0;
+  border: none;
 }
 
 @media print {
@@ -293,7 +294,7 @@ table {
   }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #ddd !important;
+    border: 0;
   }
 }
 
@@ -332,6 +333,7 @@ input,
 select[multiple],
 textarea {
   background-image: none;
+  border-radius:7px;
 }
 
 a {
@@ -492,7 +494,8 @@ h6 small,
 .h6 small {
   font-weight: normal;
   line-height: 1;
-  color: #999999;
+  background-color:darkgreen;
+  text-align:center;
 }
 
 h1,
@@ -517,6 +520,11 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+  background-color:darkgreen;
+  color:white;
+  text-align:center;
+  border-radius:7px;
+  padding:5px;
 }
 
 h3,
@@ -1419,7 +1427,7 @@ th {
   margin-bottom: 20px;
 }
 
-.table thead > tr > th,
+.table thead > tr > th
 .table tbody > tr > th,
 .table tfoot > tr > th,
 .table thead > tr > td,
@@ -1428,12 +1436,12 @@ th {
   padding: 8px;
   line-height: 1.428571429;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
-}
+  border:0;
+  }
 
 .table thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 2px solid #dddddd;
+  border-bottom: 0;
 }
 
 .table caption + thead tr:first-child th,
@@ -1442,11 +1450,11 @@ th {
 .table caption + thead tr:first-child td,
 .table colgroup + thead tr:first-child td,
 .table thead:first-child tr:first-child td {
-  border-top: 0;
+  border: 0;
 }
 
 .table tbody + tbody {
-  border-top: 2px solid #dddddd;
+  border-top: 0;
 }
 
 .table .table {
@@ -1463,7 +1471,7 @@ th {
 }
 
 .table-bordered {
-  border: 1px solid #dddddd;
+  border: 0;
 }
 
 .table-bordered > thead > tr > th,
@@ -1472,12 +1480,12 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #dddddd;
+  border: 0;
 }
 
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
-  border-bottom-width: 2px;
+  border:0;
 }
 
 .table-striped > tbody > tr:nth-child(odd) > td,
@@ -1529,7 +1537,7 @@ table th[class*="col-"] {
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
   background-color: #dff0d8;
-  border-color: #d6e9c6;
+  border-color: white;
 }
 
 .table-hover > tbody > tr > td.success:hover,
@@ -1591,7 +1599,7 @@ table th[class*="col-"] {
     margin-bottom: 15px;
     overflow-x: scroll;
     overflow-y: hidden;
-    border: 1px solid #dddddd;
+    border: 0;
   }
   .table-responsive > .table {
     margin-bottom: 0;
@@ -2050,21 +2058,10 @@ fieldset[disabled] .btn {
 }
 
 .btn-default {
-  color: #333333;
-  background-color: #ffffff;
+  color: white;
+  background-color: darkgreen;
   border-color: #cccccc;
 }
-
-.btn-default:hover,
-.btn-default:focus,
-.btn-default:active,
-.btn-default.active,
-.open .dropdown-toggle.btn-default {
-  color: #333333;
-  background-color: #ebebeb;
-  border-color: #adadad;
-}
-
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
@@ -3910,7 +3907,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .nav-tabs.nav-justified > li > a {
   margin-right: 0;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 0;
 }
 
 .nav-tabs.nav-justified > .active > a {
@@ -3970,7 +3967,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .nav-tabs-justified > li > a {
   margin-right: 0;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 0;
 }
 
 .nav-tabs-justified > .active > a {
@@ -4521,12 +4518,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: white;
 }
 
 
 .navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:active{
+.navbar-inverse .navbar-nav > li > a:active {
   color: white;
   background-color: darkgreen;
   border-radius:5px;
@@ -5388,12 +5385,12 @@ a.list-group-item:focus {
 }
 
 .panel > .panel-body + .table {
-  border-top: 1px solid #dddddd;
+  border-top: 0;
 }
 
 .panel-heading {
   padding: 10px 15px;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
@@ -5706,7 +5703,7 @@ body.modal-open,
   padding: 19px 20px 20px;
   margin-top: 15px;
   text-align: right;
-  border-top: 1px solid #e5e5e5;
+  border-top: 0;
 }
 
 .modal-footer:before,

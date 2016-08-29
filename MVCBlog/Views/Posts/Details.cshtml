@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
-<link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
+
 <div class="details">
     <h2>Детайли</h2>
     <div>
@@ -36,7 +36,7 @@
         </dl>
     </div>
     <br />
-    <div>
+    <div >
         <h2>Коментари</h2>
         @if (Model.Comments.Any())
         {
@@ -61,6 +61,8 @@
 
     </div>
 </div>
+<br />
+<br />
 <p>
     @Html.ActionLink("Редактирай", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Обратно към обявите", "Index")
