@@ -363,3 +363,37 @@ C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\LinkedIn.Api.Client.O
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Ninject.dll
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Owin.Security.Providers.dll
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Ninject.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Abp.AutoMapper.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Abp.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\AutoMapper.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Castle.Core.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Castle.Facilities.Logging.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Castle.Windsor.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Configuration.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\LinkedIn.Api.Client.Core.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\LinkedIn.Api.Client.Owin.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Moq.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\NHibernate.Mapping.Attributes.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Ninject.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.AsyncEx.Concurrent.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.AsyncEx.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.AsyncEx.Enlightenment.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Owin.Security.Providers.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\PagedList.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\PagedList.Mvc.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\System.Collections.Immutable.dll
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Abp.pdb
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Abp.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Abp.AutoMapper.pdb
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Abp.AutoMapper.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\AutoMapper.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Castle.Core.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Castle.Facilities.Logging.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Castle.Windsor.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Moq.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Ninject.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.AsyncEx.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.AsyncEx.Concurrent.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.AsyncEx.Enlightenment.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\PagedList.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\PagedList.Mvc.xml

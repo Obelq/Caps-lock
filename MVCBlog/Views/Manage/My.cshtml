@@ -1,0 +1,11 @@
+﻿@model WebsiteForAds.Models.MyAdvertismentsViewModel
+
+@{
+    ViewBag.Title = "My Posts";
+}
+
+@Html.Partial("_Advertisment");
+
+@section scripts {
+    @Scripts.Render("~/bundles/ajax")
+}

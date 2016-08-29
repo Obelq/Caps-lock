@@ -1,0 +1,13 @@
+﻿@model WebsiteForAds.Models.MyAdvertismentsViewModel
+
+<h1>My Adve</h1>
+<div class="row">
+    @if (Model.Advertisments.Any())
+    {
+        @Html.DisplayFor(x => x.Advertisments)
+    }
+    else
+    {
+        <div class="col-md-4 col-sm-6 col-xs-12">No events</div>
+    }
+</div>

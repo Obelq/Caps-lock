@@ -1,0 +1,13 @@
+﻿body {
+}
+.advDetails{
+   display:inline-block;
+}
+
+.details{
+    display:inline-block;
+}
+.links :hover{
+    background-color: darkgreen;
+    background: white;
+}

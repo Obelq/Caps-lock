@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebsiteForAds.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Posts/Details.cshtml";
+}
+<link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
+<div style="font-family:Arial">
+    <p>
+        @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+        {
+            <b>Търси по:</b> @Html.RadioButton("searchBy", "Title", true) <text>Заглавие</text>
+            @Html.RadioButton("searchBy", "Body") <text>Описание</text> <br />
+            @Html.TextBox("search") <input type="submit" class="searchButton" value="Търсене" />
+        }
+    </p>
+    <table class="table" border="1">
+        <tr>
+            <th class="colName">
+                Потребител:
+            </th>
+            <th class="colName">Действия:</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Изтрий", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
