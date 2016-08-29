@@ -333,7 +333,6 @@ C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Microsoft.Owin.Securi
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\obj\Debug\WebsiteForAds.csprojResolveAssemblyReference.cache
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\NHibernate.Mapping.Attributes.dll
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Abp.AutoMapper.dll
 C:\Users\Zahariya\Desktop\New folder (6)\trunk\MVCBlog\bin\Abp.dll

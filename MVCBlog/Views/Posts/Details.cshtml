@@ -51,19 +51,14 @@
     <div>
         <h2>Добавяне на коментар</h2>
 
-        @using (Ajax.BeginForm("AddComment", "Posts", new { id = Model.Id }, new AjaxOptions()
+        @using (Html.BeginForm("Details", "Posts", FormMethod.Post, InsertionMode.InsertAfter))
         {
-            HttpMethod = "POST",
-            InsertionMode = InsertionMode.InsertAfter,
-            UpdateTargetId = "comments",
-        }))
-        {
-            @Html.AntiForgeryToken()
+           @Html.AntiForgeryToken()
             <label for="Content">Съдържание:</label>
             <input id="Content" type="text" name="Content" value="" />
-
             <input type="submit" name="submit" value="Добави" />
         }
+
     </div>
 </div>
 <p>

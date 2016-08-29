@@ -22,11 +22,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Начало", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Обяви", "Index", "Posts")</li>
+                    <li class="links">@Html.ActionLink("Начало", "Index", "Home")</li>
+                    <li class="links">@Html.ActionLink("Обяви", "Index", "Posts")</li>
                     @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Добави обява", "Create", "Posts")</li>
+                        <li >@Html.ActionLink("Добави обява", "Create", "Posts")</li>
                     }
 
                     @if (ViewContext.HttpContext.User.IsInRole("Administrators"))

@@ -6,7 +6,6 @@ using System.Net;
 using System.Web.Mvc;
 using WebsiteForAds.Extensions;
 using Microsoft.AspNet.Identity;
-using WebsiteForAds.Web.InputModels;
 
 namespace WebsiteForAds.Controllers
 {
@@ -60,7 +59,7 @@ namespace WebsiteForAds.Controllers
             {
                 db.Posts.Add(post);
                 db.SaveChanges();
-                this.AddNotification("Публикацията беше създадена успешно!",NotificationType.SUCCESS);
+                this.AddNotification("Обявата беше създадена успешно!",NotificationType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
@@ -149,37 +148,29 @@ namespace WebsiteForAds.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult MineAdvertisments()
+        public ActionResult My()
         {
             string currentUserId = this.User.Identity.GetUserId();
             var advertisments = this.db.Posts
                 .Where(e => e.AuthorId == currentUserId)
                 .OrderBy(e => e.Date)
                 .Select(PostViewModel.ViewModel);
-            
-            return View(advertisments);
+
+            return View(new MyAdvertismentsViewModel() {Advertisments = advertisments });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddComment(CommentInputModel comment)
+        public ActionResult AddComment([Bind(Include = "Id,Body,Author,Date")] Comment comment)
         {
-            if (comment != null && this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                comment.UserId = this.User.Identity.GetUserId();
-                var comment = Mapper.Map<Comment>(model);
-                this.Data.Comments.Add(comment);
-                this.Data.SaveChanges();
-
-                var commentViewModel = this.Data.Comments
-                    .All()
-                    .Where(x => x.Id == comment.Id)
-                    .Project()
-                    .To<CommentViewModel>()
-                    .FirstOrDefault();
-                return this.PartialView("DisplayTemplates/CommentViewModel", commentViewModel);
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                this.AddNotification("Коментарът беше създаден успешно!", NotificationType.SUCCESS);
+                return RedirectToAction("Index");
             }
 
-            return this.Json(this.ModelState);
+            return View(comment);
         }
     }
 }
