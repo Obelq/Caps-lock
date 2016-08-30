@@ -1,0 +1,13 @@
+﻿@model WebsiteForAds.Models.MyAdvertismentsViewModel
+
+<h2>Моите обяви</h2>
+<div class="row">
+    @if (Model.Advertisments.Any())
+    {
+        @Html.DisplayFor(x => x.Advertisments)
+    }
+    else
+    {
+        <div class="col-md-4 col-sm-6 col-xs-12">Няма обяви от ваше име.</div>
+    }
+</div>

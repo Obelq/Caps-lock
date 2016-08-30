@@ -48,11 +48,11 @@ namespace WebsiteForAds.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Потребителското име е задължително")]
         [Display(Name = "Потребителско име:")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Паролата е задължителна")]
         [DataType(DataType.Password)]
         [Display(Name = "Парола:")]
         public string Password { get; set; }
@@ -63,25 +63,27 @@ namespace WebsiteForAds.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Името и презимето са задължителни")]
         [Display(Name = "Име и презиме:")]
         public string FullName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Потребителското име е задължително")]
         [Display(Name = "Потребителско име:")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Имейла е задължителен")]
         [EmailAddress]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [Display(Name = "Имейл:")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Паролата е задължителна")]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола:")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Паролата за потвърждине е задължителна")]
         [DataType(DataType.Password)]
         [Display(Name = "Потвърди паролата:")]
         [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
@@ -90,12 +92,12 @@ namespace WebsiteForAds.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Имейла е задължителен")]
         [EmailAddress]
         [Display(Name = "Имейл:")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Паролата е задължителна")]
         [StringLength(100, ErrorMessage = "Полето \"{0}\" трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола:")]
