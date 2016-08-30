@@ -278,6 +278,7 @@
     <Compile Include="Classes\Cut.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Extensions\NotificationExtensions.cs" />
@@ -288,11 +289,12 @@
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Data\ApplicationUser.cs" />
-    <Compile Include="Models\Data\Comment.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Data\Post.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\MyAdvertismentsViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -370,10 +372,17 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Posts\Comments.cshtml" />
     <Content Include="Views\Shared\_Advertisment.cshtml" />
+    <Content Include="Views\Images\Create.cshtml" />
+    <Content Include="Views\Images\Delete.cshtml" />
+    <Content Include="Views\Images\Details.cshtml" />
+    <Content Include="Views\Images\Edit.cshtml" />
+    <Content Include="Views\Images\Index.cshtml" />
+    <Content Include="Views\Images\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Pictures\" />
+    <Folder Include="Upload_Files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

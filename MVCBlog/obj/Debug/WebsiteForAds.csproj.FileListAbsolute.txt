@@ -77,7 +77,6 @@ C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Microsof
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\obj\Debug\WebsiteForAds.csprojResolveAssemblyReference.cache
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\obj\Debug\MVCBlog.dll
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\obj\Debug\MVCBlog.pdb
 C:\Users\Zahariya\Desktop\New folder (4)\trunk\MVCBlog\bin\ApplicationInsights.config
@@ -397,3 +396,4 @@ C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.Asy
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\Nito.AsyncEx.Enlightenment.xml
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\PagedList.xml
 C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\bin\PagedList.Mvc.xml
+C:\Users\Georgi\Documents\GitHub\Website-for-advertisements\MVCBlog\obj\Debug\WebsiteForAds.csprojResolveAssemblyReference.cache

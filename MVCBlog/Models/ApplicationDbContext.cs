@@ -21,5 +21,16 @@ namespace WebsiteForAds.Models
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
+        public System.Data.Entity.DbSet<WebsiteForAds.Models.Image> Images { get; set; }
+    }
+    public class DbConnectionContext : DbContext
+    {
+        public DbConnectionContext() : base("name=dbContext")
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges
+            <DbConnectionContext>());
+        }
+        public DbSet<Image> Image { get; set; }
     }
 }
