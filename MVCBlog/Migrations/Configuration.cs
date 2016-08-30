@@ -21,19 +21,19 @@ namespace WebsiteForAds.Migrations
             {
                 // If the database is empty, populate sample data in it
 
-                CreateUser(context, "admin@gmail.com", "123", "System Administrator");
-                CreateUser(context, "pesho@gmail.com", "123", "Peter Ivanov");
-                CreateUser(context, "merry@gmail.com", "123", "Maria Petrova");
-                CreateUser(context, "geshu@gmail.com", "123", "George Petrov");
+                CreateUser(context,"admin", "admin@gmail.com", "123", "System Administrator");
+                CreateUser(context, "pesho","pesho@gmail.com", "123", "Peter Ivanov");
+                CreateUser(context, "merry","merry@gmail.com", "123", "Maria Petrova");
+                CreateUser(context, "geshu","geshu@gmail.com", "123", "George Petrov");
 
                 CreateRole(context, "Administrators");
-                AddUserToRole(context, "admin@gmail.com", "Administrators");
+                AddUserToRole(context, "admin", "Administrators");
 
                 context.SaveChanges();
             }
         }
 
-        private void CreateUser(ApplicationDbContext context,
+        private void CreateUser(ApplicationDbContext context,string username,
             string email, string password, string fullName)
         {
             var userManager = new UserManager<ApplicationUser>(

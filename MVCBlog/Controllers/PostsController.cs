@@ -148,16 +148,6 @@ namespace WebsiteForAds.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult My()
-        {
-            string currentUserId = this.User.Identity.GetUserId();
-            var advertisments = this.db.Posts
-                .Where(e => e.AuthorId == currentUserId)
-                .OrderBy(e => e.Date)
-                .Select(PostViewModel.ViewModel);
-
-            return View(new MyAdvertismentsViewModel() {Advertisments = advertisments });
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddComment([Bind(Include = "Id,Body,Author,Date")] Comment comment)

@@ -49,9 +49,8 @@ namespace WebsiteForAds.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Имейл:")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Потребителско име:")]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +63,14 @@ namespace WebsiteForAds.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Име и презиме:")]
+        public string FullName { get; set; }
+
+        [Required]
+        [Display(Name = "Потребителско име:")]
+        public string Username { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Имейл:")]
@@ -89,7 +96,7 @@ namespace WebsiteForAds.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
+        [StringLength(100, ErrorMessage = "Полето \"{0}\" трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола:")]
         public string Password { get; set; }
