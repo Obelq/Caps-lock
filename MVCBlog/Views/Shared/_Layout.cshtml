@@ -1,13 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 @Html.Partial("_Notifications");
+@using Microsoft.AspNet.Identity;
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Caps lock</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,24 +22,22 @@
                   
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"  >
+                <ul class="nav navbar-nav">
                     <li class="links">@Html.ActionLink("Начало", "Index", "Home")</li>
                     <li class="links">@Html.ActionLink("Обяви", "Index", "Posts")</li>
+					@if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                    {
+                        <li >@Html.ActionLink("Изображения", "Index", "Images")</li>
+                    }
                     @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
                     {
                         <li >@Html.ActionLink("Добави обява", "Create", "Posts")</li>
                     }
-                    @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
-                    {
-                        <li >@Html.ActionLink("Изображения", "Index", "Images", null, new { @class = "navbar-brand" })</li>
-                    }
-                   
-
                     @if (ViewContext.HttpContext.User.IsInRole("Administrators"))
                     {
-                        <li>@Html.ActionLink("Потребители", "UsersIndex", "Account")</li>
-                    }
-                   
+                        <li>@Html.ActionLink("Потребители", "Index", "Account")</li>
+                     }
+                                       
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -48,11 +47,11 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Caps lock</p>
+            <p>&copy; @DateTime.Now.Year - MVC Blog</p>
         </footer>
     </div>
 
-   
+  
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

@@ -31,6 +31,6 @@ namespace WebsiteForAds.Models
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges
             <DbConnectionContext>());
         }
-        public DbSet<Image> Image { get; set; }
+        public DbSet<Image> ImageGallery { get; set; }
     }
 }

@@ -7,6 +7,9 @@ namespace WebsiteForAds.Models
 {
     public class IndexViewModel
     {
+        public string FullName { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
@@ -43,17 +46,17 @@ namespace WebsiteForAds.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Текуща парола:")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 3)]
+        [StringLength(100, ErrorMessage = "Полето \"{0}\" трябва да бъде поне {2} символ.", MinimumLength = 1)]
         [DataType(DataType.Password)]
-        [Display(Name = "Новата парола")]
+        [Display(Name = "Нова парола:")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
+        [Display(Name = "Потвърди паролата")]
         [Compare("NewPassword", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
     }

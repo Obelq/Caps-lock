@@ -1,13 +1,44 @@
 ﻿@model WebsiteForAds.Models.MyAdvertismentsViewModel
 
-<h1>My Adve</h1>
+<h2>Моите обяви</h2>
 <div class="row">
     @if (Model.Advertisments.Any())
     {
-        @Html.DisplayFor(x => x.Advertisments)
+        <table class="table" border="0">
+            <tr>
+                <th style="background-color:darkgreen;border-radius:7px;color:white;padding:2px;text-align:center">
+                    Снимка:
+                </th>
+                <th style="background-color:darkgreen;border-radius:7px;color:white;padding:2px;text-align:center">
+                    Заглавие:
+                </th>
+                <th style="background-color:darkgreen;border-radius:7px;color:white;padding:2px;text-align:center">
+                    Описание:
+                </th>
+                <th style="background-color:darkgreen;border-radius:7px;color:white;padding:2px;text-align:center">
+                    Добавена на:
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Advertisments)
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.ActionLink(item.Title, "Details", new { id = item.Id })
+                    </td>
+                    <td>
+                        @item.Body
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                </tr>
+            }
+        </table>
     }
     else
     {
-        <div class="col-md-4 col-sm-6 col-xs-12">No events</div>
+        <div class="col-md-4 col-sm-6 col-xs-12">Няма обяви от ваше име.</div>
     }
 </div>

@@ -48,14 +48,13 @@ namespace WebsiteForAds.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Потребителското име е задължително")]
+        [Display(Name = "Потребителско име:")]
+        public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Паролата е задължителна")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
         [Display(Name = "Запомни ме?")]
@@ -64,39 +63,49 @@ namespace WebsiteForAds.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Името и презимето са задължителни")]
+        [Display(Name = "Име и презиме:")]
+        public string FullName { get; set; }
+
+        [Required(ErrorMessage = "Потребителското име е задължително")]
+        [Display(Name = "Потребителско име:")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Имейла е задължителен")]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 1)]
+        [Display(Name = "Имейл:")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Паролата е задължителна")]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [DataType(DataType.Password)]
-        [Display(Name = "Паролата")]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Паролата за потвърждине е задължителна")]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Потвърди паролата:")]
         [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
     }
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Имейла е задължителен")]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Имейл:")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 1)]
+        [Required(ErrorMessage = "Паролата е задължителна")]
+        [StringLength(100, ErrorMessage = "Полето \"{0}\" трябва да бъде поне {2} символа.", MinimumLength = 1)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Потъврди паролата:")]
+        [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

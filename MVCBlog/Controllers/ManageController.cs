@@ -7,12 +7,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebsiteForAds.Models;
+using WebsiteForAds.Extensions;
 
 namespace WebsiteForAds.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -55,7 +58,7 @@ namespace WebsiteForAds.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Паролата Ви беше сменена успешно!"
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -72,7 +75,24 @@ namespace WebsiteForAds.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            var currUserId = User.Identity.GetUserId();
+            var user = this.db.Users.Where(u => u.Id == currUserId).First();
+            model.Username = user.UserName;
+            model.FullName = user.FullName;
+            model.Email = user.Email;
             return View(model);
+        }
+
+        public ActionResult My()
+        {
+            string currentUserId = this.User.Identity.GetUserId();
+            var advertisments = this.db.Posts
+                .Where(e => e.AuthorId == currentUserId)
+                .OrderBy(e => e.Date)
+                .Select(PostViewModel.ViewModel);
+
+            return View(new MyAdvertismentsViewModel() { Advertisments = advertisments });
         }
 
         //

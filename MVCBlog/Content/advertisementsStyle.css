@@ -1,13 +1,20 @@
 ﻿body {
 }
+
 .advDetails{
    display:inline-block;
 }
 
-.details{
+.details div{
     display:inline-block;
 }
+
 .links :hover{
+    background-color: darkgreen;
+    background: white;
+}
+
+.searchButton{
     background-color: darkgreen;
     background: white;
 }

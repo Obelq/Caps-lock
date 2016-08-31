@@ -6,7 +6,7 @@
     {
         public int Id { get; set; }
    
-        public string Content { get; set; }
+        public string Body { get; set; }
    
         public string Username { get; set; }
 
@@ -16,8 +16,8 @@
             {
                 return c => new CommentViewModel()
                 {
-                    Content = c.Body,
-                    Username = c.Author.ToString()
+                    Body = c.Body,
+                    Username = c.Author.UserName
                 };
             }
         }

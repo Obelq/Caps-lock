@@ -1,7 +1,11 @@
-﻿@model WebsiteForAds.Models.CommentViewModel
+﻿@model WebsiteForAds.Models.AllCommentsViewModel
 
-<div class="body-content">
-    <p>@Model.Content</p>
-    <p>User: @Model.Username</p>
-</div>
+@{
+    ViewBag.Title = "View Comments";
+}
 
+@Html.Partial("_Comment")
+
+@section scripts {
+    @Scripts.Render("~/bundles/ajax")
+}

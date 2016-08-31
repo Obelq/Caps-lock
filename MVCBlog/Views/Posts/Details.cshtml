@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Details";
 }
-<link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
+
 <div class="details">
-    <h2>Детайли</h2>
+    <h2>Обява</h2>
     <div>
         <hr />
         <dl class="dl-horizontal">
@@ -28,6 +28,12 @@
                 @Html.DisplayFor(model => model.Date)
             </dd>
             <dt>
+                Имейл за контакт:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AuthorEmail)
+            </dd>
+            <dt>
                 Снмика:
             </dt>
             <dd>
@@ -36,32 +42,26 @@
         </dl>
     </div>
     <br />
-    <div>
-        <h2>Коментари</h2>
-        @if (Model.Comments.Any())
-        {
-            @Html.DisplayFor(x => x.Comments);
-        }
-        else
-        {
-            <span>Няма коментари за показване.</span>
-        }
+    <div >
+       @Html.ActionLink("Виж коментарите към тази обява", "Comments")
     </div>
     <br />
+    
     <div>
         <h2>Добавяне на коментар</h2>
 
-        @using (Html.BeginForm("Details", "Posts", FormMethod.Post, InsertionMode.InsertAfter))
+        @using (Html.BeginForm("AddComment", "Posts", FormMethod.Post))
         {
-           @Html.AntiForgeryToken()
+            @Html.AntiForgeryToken()
             <label for="Content">Съдържание:</label>
-            <input id="Content" type="text" name="Content" value="" />
+            <input id="Content" type="text" name="Body" value="" />
             <input type="submit" name="submit" value="Добави" />
+            <input id="postId" type="hidden" name="PostId" value="@Model.Id" />
         }
-
     </div>
 </div>
+<br />
+<br />
 <p>
-    @Html.ActionLink("Редактирай", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Обратно към обявите", "Index")
 </p>

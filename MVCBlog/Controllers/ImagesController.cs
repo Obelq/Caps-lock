@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using WebsiteForAds.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace WebsiteForAds.Controllers
 {
@@ -15,7 +16,10 @@ namespace WebsiteForAds.Controllers
         public ActionResult Index()
         {
             var imagesModel = new Image();
-            var imageFiles = Directory.GetFiles(Server.MapPath("~/Upload_Files/"));
+            var currUserId = this.User.Identity.GetUserId();
+            var user = this.db.Users.Where(u => u.Id == currUserId).FirstOrDefault();
+            Directory.CreateDirectory(Server.MapPath("~/Upload_Files/"+user.UserName+ "/"));
+            var imageFiles = Directory.GetFiles(Server.MapPath("~/Upload_Files/" + user.UserName + "/"));
             foreach (var item in imageFiles)
             {
                 imagesModel.ImageList.Add(Path.GetFileName(item));
@@ -37,11 +41,16 @@ namespace WebsiteForAds.Controllers
                     HttpPostedFileBase file = Request.Files[i];
                     int fileSize = file.ContentLength;
                     string fileName = file.FileName;
-                    file.SaveAs(Server.MapPath("~/Upload_Files/" + fileName));
+                    
+                    var currUserId = this.User.Identity.GetUserId();
+                    var user = this.db.Users.Where(u => u.Id == currUserId).FirstOrDefault();
+
+
+                    file.SaveAs(Server.MapPath("~/Upload_Files/" + user.UserName + "/"+fileName));
                     Image imageGallery = new Image();
                     imageGallery.ID = Guid.NewGuid();
                     imageGallery.Name = fileName;
-                    imageGallery.ImagePath = "~/Upload_Files/" + fileName;
+                    imageGallery.ImagePath = "~/Upload_Files/" + user.UserName + "/" + fileName;
                     db.Images.Add(imageGallery);
                     db.SaveChanges();
                 }

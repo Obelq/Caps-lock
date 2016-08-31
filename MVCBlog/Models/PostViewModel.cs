@@ -7,15 +7,15 @@ namespace WebsiteForAds.Models
     {
         public int Id { get; set; }
 
+        public string Role { get; set; }
+
         public string Title { get; set; }
 
-        public DateTime StartDateTime { get; set; }
+        public string Body { get; set; }
 
-        public TimeSpan? Duration { get; set; }
+        public DateTime Date { get; set; }
 
-        public string Author { get; set; }
-
-        public string Location { get; set; }
+        public string AuthorId { get; set; }
 
         public static Expression<Func<Post, PostViewModel>> ViewModel
         {
@@ -24,11 +24,10 @@ namespace WebsiteForAds.Models
                 return p => new PostViewModel()
                 {
                     Id = p.Id,
+                    Body = p.Body,
                     Title = p.Title,
-                    StartDateTime = p.Date,
-                    Duration = p.Duration,
-                    Location = p.Location,
-                    Author = p.Author.FullName
+                    Date = p.Date,
+                    AuthorId = p.AuthorId
                 };
             }
         }

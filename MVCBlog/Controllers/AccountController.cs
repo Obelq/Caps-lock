@@ -16,6 +16,7 @@ namespace WebsiteForAds.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -27,6 +28,30 @@ namespace WebsiteForAds.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+
+        public ActionResult Index()
+        {
+            var users = db.Users
+                .OrderByDescending(u => u.FullName);
+
+            return View(users.ToList());
+        }
+
+        public ActionResult DeleteUser(string id)
+        {
+            ApplicationUser user = db.Users.Find(id);
+            if (!this.db.Posts.Any(p=> p.AuthorId == user.Id))
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+                this.AddNotification("Потребителят беше изтрит успешно!", NotificationType.SUCCESS);
+            }
+            else
+            {
+                this.AddNotification("Първо трябва да изтриете обявите от този потребител!", NotificationType.ERROR);
+            }
+            return RedirectToAction("Index");
         }
 
         public ApplicationSignInManager SignInManager
@@ -76,7 +101,7 @@ namespace WebsiteForAds.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -153,7 +178,7 @@ namespace WebsiteForAds.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { FullName = model.FullName,UserName = model.Username, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

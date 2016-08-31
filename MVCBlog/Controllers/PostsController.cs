@@ -6,24 +6,26 @@ using System.Net;
 using System.Web.Mvc;
 using WebsiteForAds.Extensions;
 using Microsoft.AspNet.Identity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebsiteForAds.Controllers
 {
-    [Authorize]
+    
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        public ActionResult Index(string searchBy, string search)
+        public ActionResult Index(string searchBy, string search, int? page)
         {
-            if (searchBy == "Body")
+            if (searchBy == "Title")
             {
-                return View(db.Posts.Where(x => x.Body.Contains(search) || search == null).ToList());
+                return View(db.Posts.Where(x => x.Body.Contains(search) || search == null).OrderByDescending(p => p.Date).ToList().ToPagedList(page ?? 1, 10));
             }
             else
             {
-                return View(db.Posts.Where(x => x.Title.Contains(search) || search == null).ToList());
+                return View(db.Posts.Where(x => x.Title.Contains(search) || search == null).OrderByDescending(p => p.Date).ToList().ToPagedList(page ?? 1, 10));
             }
         }
 
@@ -53,10 +55,14 @@ namespace WebsiteForAds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Image")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Image,AuthorId,Author")] Post post)
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.Identity.GetUserId();
+                post.AuthorId = userId;
+                var user = this.db.Users.Where(u => u.Id == userId).First();
+                post.AuthorEmail = user.Email;
                 db.Posts.Add(post);
                 db.SaveChanges();
                 this.AddNotification("Обявата беше създадена успешно!",NotificationType.SUCCESS);
@@ -111,7 +117,6 @@ namespace WebsiteForAds.Controllers
         }
 
         // GET: Posts/Delete/5
-        [Authorize(Roles = "Administrators")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -127,7 +132,6 @@ namespace WebsiteForAds.Controllers
         }
 
         // POST: Posts/Delete/5
-        [Authorize(Roles = "Administrators")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -148,29 +152,33 @@ namespace WebsiteForAds.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult My()
-        {
-            string currentUserId = this.User.Identity.GetUserId();
-            var advertisments = this.db.Posts
-                .Where(e => e.AuthorId == currentUserId)
-                .OrderBy(e => e.Date)
-                .Select(PostViewModel.ViewModel);
-
-            return View(new MyAdvertismentsViewModel() {Advertisments = advertisments });
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddComment([Bind(Include = "Id,Body,Author,Date")] Comment comment)
+        public ActionResult AddComment([Bind(Include = "Body, PostId")] Comment comment)
         {
             if (ModelState.IsValid)
             {
+                comment.AuthorId = this.User.Identity.GetUserId();
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 this.AddNotification("Коментарът беше създаден успешно!", NotificationType.SUCCESS);
-                return RedirectToAction("Index");
+                return RedirectToAction("Details/" + comment.PostId);
             }
 
-            return View(comment);
+            return RedirectToAction("Details/" + comment.PostId);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Comments()
+        {
+                string currentUserId = this.User.Identity.GetUserId();
+                var comments = this.db.Comments
+                    .Where(e => e.AuthorId == currentUserId)
+                    .OrderBy(e => e.Date)
+                    .Select(CommentViewModel.ViewModel);
+
+                return View(new AllCommentsViewModel() { Comments = comments });
+            }
     }
 }

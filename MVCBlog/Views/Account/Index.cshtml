@@ -2,33 +2,40 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Posts/Details.cshtml";
 }
 <link href="~/Content/advertisementsStyle.css" rel="stylesheet" type="text/css" />
+<h2>Потребители</h2>
+<br />
 <div style="font-family:Arial">
-    <p>
-        @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
-        {
-            <b>Търси по:</b> @Html.RadioButton("searchBy", "Title", true) <text>Заглавие</text>
-            @Html.RadioButton("searchBy", "Body") <text>Описание</text> <br />
-            @Html.TextBox("search") <input type="submit" class="searchButton" value="Търсене" />
-        }
-    </p>
-    <table class="table" border="1">
+    <table class="table" border="0">
         <tr>
-            <th class="colName">
-                Потребител:
+            <th>
+                Име и презиме:
             </th>
-            <th class="colName">Действия:</th>
+            <th>
+                Потребителско име:
+            </th>
+            <th>
+                Имейл:
+            </th>
+            <th>
+                Действия:
+            </th>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
+                    @item.FullName
                 </td>
                 <td>
-                    @Html.ActionLink("Изтрий", "Delete", new { id = item.Id })
+                    @item.UserName
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    <a href="Account/DeleteUser/@item.Id">Изтрий</a>
                 </td>
             </tr>
         }
