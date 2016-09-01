@@ -19,7 +19,7 @@ namespace WebsiteForAds.Controllers
         // GET: Posts
         public ActionResult Index(string searchBy, string search, int? page)
         {
-            if (searchBy == "Title")
+            if (searchBy == "Body")
             {
                 return View(db.Posts.Where(x => x.Body.Contains(search) || search == null).OrderByDescending(p => p.Date).ToList().ToPagedList(page ?? 1, 10));
             }
@@ -55,7 +55,7 @@ namespace WebsiteForAds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Image,AuthorId,Author")] Post post)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,Date,Picture,AuthorId,Author")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -72,31 +72,34 @@ namespace WebsiteForAds.Controllers
             return View(post);
         }
 
-        //public ActionResult CreateComment([Bind(Include = "Id,Body,Date,Author")] Comment comment)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Comments.Add(comment);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //
-        //    return View(comment);
-        //}
-
-        // GET: Posts/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
+            var userId = this.User.Identity.GetUserId();
+            var user = this.db.Users.Where(u => u.Id == userId).First();
+
+            Post post = db.Posts.Find(id);
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+
             if (post == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+
+            if (user.Id == post.AuthorId || user.Email == "admin@gmail.com")
+            {
+                return View(post);
+            }
+            else
+            {
+                this.AddNotification("Обявата, която искате да редактирате, не е ваша!", NotificationType.ERROR);
+                return RedirectToAction("Index");
+            }           
         }
 
         // POST: Posts/Edit/5
@@ -104,7 +107,8 @@ namespace WebsiteForAds.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,Image")] Post post)
+        [Authorize]
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,Picture")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -119,16 +123,29 @@ namespace WebsiteForAds.Controllers
         // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
         {
+            var userId = this.User.Identity.GetUserId();
+            var user = this.db.Users.Where(u => u.Id == userId).First();
+
+            Post post = db.Posts.Find(id);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
             if (post == null)
             {
                 return HttpNotFound();
             }
-            return View(post);
+
+            if (user.Id == post.AuthorId || user.Email == "admin@gmail.com")
+            {
+                return View(post);
+            }
+            else
+            {
+                this.AddNotification("Обявата, която искате да изтриете, не е ваша!", NotificationType.ERROR);
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Posts/Delete/5
@@ -151,34 +168,6 @@ namespace WebsiteForAds.Controllers
             }
             base.Dispose(disposing);
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddComment([Bind(Include = "Body, PostId")] Comment comment)
-        {
-            if (ModelState.IsValid)
-            {
-                comment.AuthorId = this.User.Identity.GetUserId();
-                db.Comments.Add(comment);
-                db.SaveChanges();
-                this.AddNotification("Коментарът беше създаден успешно!", NotificationType.SUCCESS);
-                return RedirectToAction("Details/" + comment.PostId);
-            }
-
-            return RedirectToAction("Details/" + comment.PostId);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Comments()
-        {
-                string currentUserId = this.User.Identity.GetUserId();
-                var comments = this.db.Comments
-                    .Where(e => e.AuthorId == currentUserId)
-                    .OrderBy(e => e.Date)
-                    .Select(CommentViewModel.ViewModel);
-
-                return View(new AllCommentsViewModel() { Comments = comments });
-            }
+        
     }
 }

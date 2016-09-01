@@ -18,7 +18,7 @@ namespace WebsiteForAds.Controllers
             var imagesModel = new Image();
             var currUserId = this.User.Identity.GetUserId();
             var user = this.db.Users.Where(u => u.Id == currUserId).FirstOrDefault();
-            Directory.CreateDirectory(Server.MapPath("~/Upload_Files/"+user.UserName+ "/"));
+            Directory.CreateDirectory(Server.MapPath("~/Upload_Files/" + user.UserName + "/"));
             var imageFiles = Directory.GetFiles(Server.MapPath("~/Upload_Files/" + user.UserName + "/"));
             foreach (var item in imageFiles)
             {
@@ -41,12 +41,12 @@ namespace WebsiteForAds.Controllers
                     HttpPostedFileBase file = Request.Files[i];
                     int fileSize = file.ContentLength;
                     string fileName = file.FileName;
-                    
+
                     var currUserId = this.User.Identity.GetUserId();
                     var user = this.db.Users.Where(u => u.Id == currUserId).FirstOrDefault();
 
 
-                    file.SaveAs(Server.MapPath("~/Upload_Files/" + user.UserName + "/"+fileName));
+                    file.SaveAs(Server.MapPath("~/Upload_Files/" + user.UserName + "/" + fileName));
                     Image imageGallery = new Image();
                     imageGallery.ID = Guid.NewGuid();
                     imageGallery.Name = fileName;

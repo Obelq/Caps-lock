@@ -11,6 +11,7 @@ namespace WebsiteForAds.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             var posts = db.Posts.Include(p => p.Author)

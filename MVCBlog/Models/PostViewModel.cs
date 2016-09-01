@@ -13,6 +13,8 @@ namespace WebsiteForAds.Models
 
         public string Body { get; set; }
 
+        public string Picture { get; set; }
+
         public DateTime Date { get; set; }
 
         public string AuthorId { get; set; }
@@ -27,7 +29,8 @@ namespace WebsiteForAds.Models
                     Body = p.Body,
                     Title = p.Title,
                     Date = p.Date,
-                    AuthorId = p.AuthorId
+                    AuthorId = p.AuthorId,
+                    Picture = p.Picture
                 };
             }
         }

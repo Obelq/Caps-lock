@@ -31,6 +31,12 @@
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div>
+            @if (Model.Picture != null)
+                {
+                <img src="@Url.Content(Model.Picture)" height="400" width="400">
+            }
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Запази" class="btn btn-default" />

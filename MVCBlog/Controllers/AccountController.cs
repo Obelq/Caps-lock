@@ -179,6 +179,7 @@ namespace WebsiteForAds.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { FullName = model.FullName,UserName = model.Username, Email = model.Email };
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -192,7 +193,19 @@ namespace WebsiteForAds.Controllers
                     this.AddNotification("Успешна регистрация!", NotificationType.SUCCESS);
                     return RedirectToAction("Index", "Home");
                 }
-                this.AddNotification("Неуспешна регистрация!", NotificationType.ERROR); AddErrors(result);
+                if (db.Users.Any(u => u.UserName == model.Username))
+                {
+                    this.AddNotification("Съществуващо потребителско име!", NotificationType.ERROR);
+                }
+                else if (db.Users.Any(u => u.Email == model.Email))
+                {
+                    this.AddNotification("Съществуващ имейл!", NotificationType.ERROR);
+                }
+                else
+                {
+                    this.AddNotification("Неуспешна регистрация!", NotificationType.ERROR);
+                }
+                AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form

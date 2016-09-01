@@ -21,23 +21,27 @@
                 </button>
                   
             </div>
+           
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li href='@Url.Action("Index", "Home")'>
+                        <img src='@Url.Content("~/Pictures/imageedit_3_9267868347.png")' />
+                    </li>
+                    
                     <li class="links">@Html.ActionLink("Начало", "Index", "Home")</li>
                     <li class="links">@Html.ActionLink("Обяви", "Index", "Posts")</li>
 					@if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
                     {
                         <li >@Html.ActionLink("Изображения", "Index", "Images")</li>
                     }
-                    @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                    @if (ViewContext.HttpContext.User.Identity.IsAuthenticated )
                     {
                         <li >@Html.ActionLink("Добави обява", "Create", "Posts")</li>
                     }
                     @if (ViewContext.HttpContext.User.IsInRole("Administrators"))
                     {
                         <li>@Html.ActionLink("Потребители", "Index", "Account")</li>
-                     }
-                                       
+                     }          
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

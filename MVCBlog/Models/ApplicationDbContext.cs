@@ -19,9 +19,6 @@ namespace WebsiteForAds.Models
         }
 
         public DbSet<Post> Posts { get; set; }
-
-        public DbSet<Comment> Comments { get; set; }
-
         public System.Data.Entity.DbSet<WebsiteForAds.Models.Image> Images { get; set; }
     }
     public class DbConnectionContext : DbContext

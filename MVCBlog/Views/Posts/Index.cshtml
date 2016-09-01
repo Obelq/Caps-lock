@@ -44,7 +44,10 @@
         {
             <tr>
                 <td >
-                    @Html.DisplayFor(modelItem => item.Picture)
+                   @if (item.Picture != null)
+                   {
+                    <img src="@Url.Content(item.Picture)" height="100" width="100">
+                   }
                 </td>
                 <td>
                     @Html.ActionLink(item.Title, "Details", new { id = item.Id })

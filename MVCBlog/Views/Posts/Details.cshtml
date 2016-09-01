@@ -37,28 +37,14 @@
                 Снмика:
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Picture)
+                @if (Model.Picture != null)
+                {
+                    <img src="@Url.Content(Model.Picture)" height="400" width="400">
+                }
             </dd>
         </dl>
     </div>
     <br />
-    <div >
-       @Html.ActionLink("Виж коментарите към тази обява", "Comments")
-    </div>
-    <br />
-    
-    <div>
-        <h2>Добавяне на коментар</h2>
-
-        @using (Html.BeginForm("AddComment", "Posts", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            <label for="Content">Съдържание:</label>
-            <input id="Content" type="text" name="Body" value="" />
-            <input type="submit" name="submit" value="Добави" />
-            <input id="postId" type="hidden" name="PostId" value="@Model.Id" />
-        }
-    </div>
 </div>
 <br />
 <br />

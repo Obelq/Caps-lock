@@ -24,6 +24,8 @@
         });
     });
 </script>
+
+
 <style type="text/css">
     .imgBox {
         width: 200px;
@@ -51,13 +53,14 @@
         <div class="row-fluid">
             <div class="span2">
                 <div class="item">
+
                     @foreach (var image in Model.ImageList)
                     {
                         <div style=" margin:10px; float:left; height:200px; overflow:hidden; width:200px;">
                             <a id="ShowImage" class="fancybox-button" data-rel="fancybox-button"
-                               title="Photo" href="@Url.Content("~/Upload_Files/"+ image)">
+                               title="Photo" href="@Url.Content("~/Upload_Files/"+HttpContext.Current.User.Identity.Name+"/"+ image)">
                                 <div class="zoom">
-                                    <img src="@Url.Content("~/Upload_Files/" + image)" class="imgBox" />
+                                    <img src="@Url.Content("~/Upload_Files/"+HttpContext.Current.User.Identity.Name+"/" + image)" class="imgBox" />
                                     <div class="zoom-icon"></div>
                                 </div>
                             </a>
